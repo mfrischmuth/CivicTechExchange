@@ -3,6 +3,12 @@
   "scripts": {
   },
   "env": {
+    "HEROKU_APP_NAME": {
+      "required": true
+    },
+    "HEROKU_PARENT_APP_NAME": {
+      "required": true
+    },
     "AWS_ACCESS_KEY_ID": {
       "required": true
     },
@@ -13,9 +19,6 @@
       "required": true
     },
     "S3_BUCKET": {
-      "required": true
-    },
-    "DJANGO_DEBUG": {
       "required": true
     },
     "ADMIN_EMAIL": {
@@ -39,11 +42,30 @@
     }
   },
   "addons": [
-    "heroku-postgresql"
+    "heroku-postgresql",
+    "papertrail"
   ],
   "buildpacks": [
     {
       "url": "heroku/python"
+    }, {
+      "url": "heroku/nodejs"
     }
-  ]
+  ],
+  "environments": {
+    "review": {
+      "scripts": {
+        "postdeploy": "bash -c \"source ./reviewapp-release.sh\""
+      },
+      "env": {
+        "DJANGO_SECRET_KEY": {
+          "required": true,
+          "generator": "secret"
+        },
+        "ADMIN_EMAIL": "marlon+reviewadmin@democracylab.org",
+        "CONTACT_EMAIL": "marlon+reviewhello@democracylab.org",
+        "PROTOCOL_DOMAIN": "PLACEHOLDER"
+      }
+    }
+  }
 }

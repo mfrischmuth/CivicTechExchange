@@ -28,7 +28,7 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = strtobool(os.environ.get('DJANGO_DEBUG'))
+DEBUG = strtobool(os.environ.get('DJANGO_DEBUG', "False"))
 
 ALLOWED_HOSTS = ['*']
 
@@ -300,7 +300,7 @@ ENVIRONMENT_VARIABLE_WARNINGS = {
         'message': 'Needed to calculate volunteer renewal periods.'
     },
     'GR_SITEKEY': {
-        'error': True,
+        'error': False,
         'message': 'Contact Us page will not render correctly.'
     },
     'CONTACT_EMAIL': {
