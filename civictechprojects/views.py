@@ -768,13 +768,13 @@ def events_list(request):
 
 
 def presign_project_thumbnail_upload(request):
-    uploader = request.user.username
     file_name = request.GET['file_name'][:150]
     file_type = request.GET['file_type']
     file_extension = file_type.split('/')[-1]
-    unique_file_name = file_name + '_' + str(time())
-    s3_key = 'thumbnails/%s/%s.%s' % (
-        uploader, unique_file_name, file_extension)
+
+    unique_file_name = file_name.split('.' + file_extension)[0] + '_' + str(time())
+    s3_key = f"uploads/user/{request.user.id}/{unique_file_name}.{file_extension}"
+
     return presign_s3_upload(
         raw_key=s3_key, file_name=file_name, file_type=file_type, acl="public-read")
 
