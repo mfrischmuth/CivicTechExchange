@@ -1,5 +1,6 @@
 .SplashScreen-root {
   background-color: $color-opacity-layer;
+  position: relative;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -73,4 +74,13 @@
   .SplashScreen-mission p {
     max-width: 700px;
   }
+}
+
+.photo-credit a{
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  font-size: small;
+  opacity: .6;
+  color: white;
 }

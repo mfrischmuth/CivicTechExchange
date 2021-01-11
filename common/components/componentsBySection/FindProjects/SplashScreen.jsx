@@ -54,6 +54,7 @@ class SplashScreen extends React.PureComponent<Props> {
             {this.props.children}
           </div>
         </div>
+        <div className="photo-credit"><a href="https://www.nowheremanphotos.com/">Photograph by Mike Wilson</a></div>
         {!_.isEmpty(this.props.bottomOverlayText) && this._renderBottomOverlay()}
       </div>
     );
